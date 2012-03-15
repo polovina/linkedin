@@ -1,0 +1,40 @@
+-#  This file is app/views/shots/index.html.haml
+%body
+  %div  
+    %div#shots
+      %table
+        %tr
+          %td=button_to "Check stream activity", "/shots/task_stream?sort=stream", :class=>"task"
+          %td=button_to "Launch total search", "/shots/task_search?sort=search", :class=>"task"
+          %td Last activity was recorded at
+          %td=@last_activity
+      
+      
+      %p
+      %table#shots
+        %thead
+          %div
+            %ul{:id=>"mainNav"}
+              %li= link_to "All activity", shots_path(:page=>"1"), :method=>:get, :class=>(@source.class==Array ? "filter" : "regular")
+              %li= link_to "Hunters stream", shots_path(:source=>"stream", :page=>"1"), :method=>:get, :class=>(@source=="stream" ? "filter" : "regular")
+              %li= link_to "Boars search", shots_path(:source=>"search", :page=>"1"), :method=>:get, :class=>(@source=="search" ? "filter" : "regular")
+          %tr
+          %tr
+            %th{:class=> ("hilite" if @sort=="boar")}= link_to "Company", shots_path(:sort=>"boar", :page=>"1")
+            %th{:class=> ("hilite" if @sort=="hunter")}= link_to "Connection", shots_path(:sort=>"hunter", :page=>"1")
+            %th Shoot to
+            %th Created
+        %tbody
+          - @shots.each do |shot|
+            %tr{:class=> (shot.important ? "important" : "regular")}
+              %td{:class=>"boar"}= link_to shot.boar, "/boars/" + shot.boar_id
+              %td{:class=>"hunter"}= link_to shot.hunter + "=>" + shot.connection_first + "=>"+shot.connection_second, edit_shot_path(shot)
+              %td{:class=>"shot"}= link_to shot.headline, edit_shot_path(shot)
+              -shot_date=shot.created_at.to_s.gsub(" UTC","")
+              %td= link_to shot_date, edit_shot_path(shot)
+          %tr
+            %table#pages
+              %tr
+                %td Go to page
+                -@pages.each do |page|
+                  %td= link_to page, shots_path(:page=>page, :source=>@source), :method=>:get

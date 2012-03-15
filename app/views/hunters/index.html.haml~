@@ -1,0 +1,36 @@
+-#  This file is app/views/hunters/index.html.haml
+%table#body
+  %td#left_column{:class=>"top"}
+    %div#hunters
+      %table#hunters
+        %tbody
+          %tr
+            %td
+              %h1 Hunters
+            %td
+              =link_to image_tag("add.jpeg"), new_hunter_path
+          %tr
+            - @hunters.each do |hunter|
+              %td
+                %div{:class=> ("inactive" if hunter.active)}=hunter.name
+                =link_to image_tag(hunter.image_url), hunter_path(hunter)+"/toggle", :method => :update 
+                =button_to 'remove', hunter_path(hunter), :method => :delete, :confirm => 'Are you sure?' 
+    %h1
+    %p
+    %div#boars
+    %h1
+      %table#boars
+        %tbody
+          %tr
+            %td
+              %h1 Boars
+            %td
+              =link_to image_tag("add_boar.jpeg"), new_boar_path
+            %tr
+          - @boars.each do |boar|
+            %tr
+              %td
+                %div{:class=> ("inactive" if boar.active)}= button_to boar.title, boar_path(boar)+"/toggle"
+              %td= link_to "profile", boar_path(boar)
+              %tr
+ 

@@ -1,0 +1,17 @@
+class AddInitialHunters < ActiveRecord::Migration
+  InitialHunters = [
+    {:id => '1', :name => 'Alex', :token => '7a223b93-d600-453c-b604-b857914d08ec', :secret => '1f8a0de8-7040-4ac6-8b3c-32cae7fa3844', :linked_id => "111"}
+    {:id => '2', :name => 'Vlad', :token => '9a61643c-1442-4944-8562-6dcfb571f7c2', :secret => 'efd8d20c-e75d-40b0-8146-ba05f13b0d24', :linked_id => "111"}
+    {:id => '3', :name => 'Misha', :token => '9a61643c-1442-4944-8562-6dcfb571f7c2', :secret => 'efd8d20c-e75d-40b0-8146-ba05f13b0d24', :linked_id => "111"}
+  ]
+  
+  
+  def up
+    InitialHunters.each do |hunter|
+      Hunter.create!(hunter)
+      end
+  end
+
+
+
+end

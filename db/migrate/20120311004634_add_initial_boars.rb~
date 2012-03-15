@@ -1,0 +1,16 @@
+class AddInitialBoars < ActiveRecord::Migration
+  InitialBoars = [
+    {:title => 'WaysGo', :rating => '10', :status => 'Novice', :description => "test", :active =>true, :source=> "initial seeding while development"},
+    :title => 'Altoros', :rating => '8', :status => 'Novice', :description => "test", :active =>true, :source=> "initial seeding while development"},
+    {:title => 'Google', :rating => '10', :status => 'Novice', :description => "test", :active =>true, :source=> "initial seeding while development"}
+  ]
+  
+  def up
+    InitialBoars.each do |boar|
+      Boar.create!(boar)
+      end
+  end
+  
+  def down
+  end
+end

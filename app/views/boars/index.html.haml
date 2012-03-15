@@ -1,0 +1,30 @@
+-#  This file is app/views/boars/index.html.haml
+%body
+  %div{:class=>"left_column"}
+    %div#boars
+      %table#boars
+        %tbody
+          %tr
+            %td
+            %td
+              =link_to image_tag("add_boar.png"), new_boar_path
+            
+            %tr
+          - @boars.each do |boar|
+            %tr
+              %td= link_to (boar.active ? image_tag("active_boar.png") : image_tag("passive_boar.png")), boar_path(boar)+"/toggle"
+              %td= button_to boar.title, edit_boar_path(boar), :class=>"boar"
+              
+    %div#hunters
+      %table#hunters
+        %tbody
+          %tr
+            %td
+            %td
+              =link_to image_tag("add_hunter.png"), "/hunters/new"
+          %tr
+            - @hunters.each do |hunter|
+              %td
+                %div= hunter.name
+                =link_to (hunter.active ? image_tag(hunter.image_url) : image_tag("inactive_hunter.png")), hunter_path(hunter)+"/toggle", :method => :update 
+                =button_to 'remove', hunter_path(hunter), :method => :delete, :confirm => 'Are you sure?'

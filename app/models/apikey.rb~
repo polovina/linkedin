@@ -1,0 +1,6 @@
+class Apikey < ActiveRecord::Base
+
+  def self.keys
+  return [Apikey.select(:token).first.token, Apikey.select(:secret).first.secret]
+  end
+end

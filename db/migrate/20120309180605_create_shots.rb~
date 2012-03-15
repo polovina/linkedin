@@ -1,0 +1,22 @@
+class CreateShots < ActiveRecord::Migration
+  def up
+    create_table :shots do |t|
+      t.string :id
+      t.string :boar
+      t.string :hunter
+      t.string :connection_first
+      t.string :connection_second
+      t.string :headline
+      t.string :source
+      t.string :comments
+      t.boolean :important
+    
+      # Add fields that let Rails automatically keep track
+      # of when companies are added or modified:
+      t.timestamps :shot_time
+    end
+  end
+  def down
+    drop_table :shots
+  end
+end

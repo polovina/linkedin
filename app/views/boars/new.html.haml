@@ -1,0 +1,25 @@
+%h1= link_to 'Back to hunting', boars_path
+
+= form_tag boars_path do
+
+  = label :boar, :title, 'Title'
+  = text_field :boar, 'title'
+
+  = label :boar, :status, 'Status'
+  = select :boar, :status, ['Novice','Client','Garbage']
+
+  = label :boar, :source, 'Source'
+  = text_field :boar, :source
+  
+  = label :boar, :rating, 'Rating'
+  = text_field :boar, :rating
+  
+  = label :boar, :aliases, 'Insert aliases for search separated by space'
+  = text_field :boar, :aliases
+  
+  = label :boar, :comment, 'Comment'
+  = text_field :boar, :comment
+  
+  
+  %div
+  = submit_tag 'Let the hunting begin!'

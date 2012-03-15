@@ -1,0 +1,12 @@
+rails generate migration boars
+rails generate migration create_movies
+
+rake db:migrate
+rails generate migration hunters
+rails generate migration add_initial_hunters
+rails generate migration alter_hunters
+heroku rake db:migrate
+git push heroku master
+heroku run rake db:migrate
+Movie.find(:all, :order=>'title DESC')
+rails generate migration create_shots

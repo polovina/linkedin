@@ -1,0 +1,24 @@
+-# edit.html.haml using partial
+
+%h1 Add notes
+
+= form_tag shot_path(@shot), :method => :put do
+
+  = label :shot, :source, 'Get from source'
+  = text_field :shot, 'source'
+
+  = label :shot, :important, 'Important'
+  = select :shot, :important, [true, false]
+
+
+  = label :shot, :connection_second, 'Connection'
+  = text_field :shot, :connection_second'
+  
+  = label :shot, :headline, 'Shot'
+  = text_field :shot, :headline'
+  
+  = label :shot, :comments, 'Notes'
+  = text_field :shot, :comments'
+  
+
+  = submit_tag 'Update shot Info'

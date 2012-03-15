@@ -1,0 +1,5 @@
+%body
+  %h1.title Targeting marketing
+  %frameset{}
+    %iframe{:scrolling =>"no", :width => "23%", :height=>"1000", :src=> "/boars", :frameborder=>"no"}
+    %iframe{:scrolling =>"no", :width => "76%", :src=> "/shots", :height=>"1000", :frameborder=>"no"}

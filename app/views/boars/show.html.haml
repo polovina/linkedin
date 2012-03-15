@@ -1,0 +1,22 @@
+-# in app/views/boars/show.html.haml
+
+%h2 Details about #{@boar.title}
+
+%ul#details
+  %li
+    Rating:
+    = @boar.rating
+  %li
+    Status
+    = @boar.status
+  %li
+    Source
+    = @boar.source
+
+%h3 Description:
+
+%p#description= @boar.description
+
+= link_to 'Edit', edit_boar_path(@boar)
+= button_to 'Delete', boar_path(@boar), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'Back to boars list', boars_path

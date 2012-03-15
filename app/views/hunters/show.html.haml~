@@ -1,0 +1,12 @@
+%h1 Add New Hunter
+
+= form_tag hunter_path do
+  = hidden_field_tag 'rtoken', @rtoken
+  = hidden_field_tag 'rsecret', @rsecret
+  = label :hunter, :hunter, 'Enter pin'
+  %div
+  = text_field :pin, 'pin'
+  %div
+  = link_to "Press here, get the PIN, return and enter it", @url, :target => "_blank"
+  %div
+  = submit_tag 'Add Hunter'

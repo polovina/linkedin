@@ -1,0 +1,10 @@
+class AlterHunters < ActiveRecord::Migration
+ def up
+    add_column :active,  :boolean, :default => 1
+  end
+
+  def down
+    remove_column :active
+  end
+end
+

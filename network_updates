@@ -1,0 +1,14 @@
+client.network_updates(:type => 'CONN')[:all].each {|hash|
+    if (hash[:update_content][:person][:connections])
+       #puts (hash[:update_content][:person])
+       # if (hash[:update_content][:connections])
+         hash_to_fetch = hash[:update_content][:person]
+         #puts(hash_to_fetch[:first_name] + " " +hash_to_fetch[:last_name])#+ " " +hash_to_fetch[:headline])
+         hash[:update_content][:person][:connections][:all].each{|connection|
+         if (connection[:headline])
+         puts(hash_to_fetch[:first_name] + " " +hash_to_fetch[:last_name] + " was connected to " + connection[:first_name] + " " + connection[:last_name]+" " + connection[:headline])
+         end
+         }   
+    end
+}
+

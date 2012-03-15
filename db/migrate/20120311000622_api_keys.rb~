@@ -1,0 +1,12 @@
+class ApiKeys < ActiveRecord::Migration
+  def up
+    create_table :apikeys do |t|
+      t.string :token
+      t.string :secret
+    end
+  Apikey.create!(:token=>"wrk8vzn7q3jq",:secret=>"ySN0PNO7jCwl3dKr")
+  end
+  def down
+    drop_table :apikeys
+  end
+end

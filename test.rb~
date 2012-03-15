@@ -1,0 +1,35 @@
+require 'rubygems'
+require 'linkedin'
+
+# get your api keys at https://www.linkedin.com/secure/developer
+
+API_KEY = "wrk8vzn7q3jq";
+API_SECRET = "ySN0PNO7jCwl3dKr";
+client = LinkedIn::Client.new(API_KEY, API_SECRET)
+#rtoken = client.request_token.token
+#rsecret = client.request_token.secret
+
+# to test from your desktop, open the following url in your browser
+# and record the pin it gives you
+#client.request_token.authorize_url
+#=> "https://api.linkedin.com/uas/oauth/authorize?#oauth_token=<generated_token>"
+
+# then fetch your access keys
+#client.authorize_from_request(rtoken, rsecret, pin)
+#=> ["OU812", "8675309"] # <= save these for future requests
+
+# or authorize from previously fetched access keys
+access_token="7a223b93-d600-453c-b604-b857914d08ec"
+access_secret="1f8a0de8-7040-4ac6-8b3c-32cae7fa3844"
+client.authorize_from_access(access_token, access_secret)
+#puts(client.profile(field=>:public_profile_url))
+
+puts(client.profile(:fields=>['first-name','last-name', 'headline','picture-url']).keys)
+puts(client.profile()[:site_standard_profile_request].keys)
+#puts(client.network_updates(:type => 'CONN')[:all][0].keys)
+
+
+
+#puts(hash_to_fetch[:connections].class)
+#puts(client.network_updates(:type => 'CONN')[:all][0][:update_content][:person][:headline])
+#puts(client.search(:company_name => 'Altoros')[:people])

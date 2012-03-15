@@ -1,0 +1,6 @@
+class TasksController < ApplicationController
+
+def thread_search
+#self.stream
+end
+end
