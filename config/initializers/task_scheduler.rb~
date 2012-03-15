@@ -1,4 +1,4 @@
-#scheduler = Rufus::Scheduler.start_new
+scheduler = Rufus::Scheduler.start_new
  
 
 scheduler.every(Task.where(:task=>"stream")[0][:frequency]) do
