@@ -13,7 +13,8 @@ end
 def self.shot_time(hunters)
   shot_time=Hash.new
   #retrieving specific timestamps for each hunter
-  hunters.each{|hunter| shot_time[hunter.id]=(Shot.where(:hunter_id=>hunter.id).maximum(:created_at) ? Shot.where(:hunter_id=>hunter.id).maximum(:created_at).to_i*1000 : (Time.now- (60*24)).to_i*1000)}
+  
+  hunters.each{|hunter| shot_time[hunter.id]=(Shot.where(:hunter_id=>hunter.id.to_s).maximum(:created_at) ? Shot.where(:hunter_id=>hunter.id.to_s).maximum(:created_at).to_i*1000 : (Time.now- (60*24)).to_i*1000)}
 return shot_time
 end
 

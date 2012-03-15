@@ -10,7 +10,6 @@ def self.clients(hunters)
 return clients
 end
 
-
 def self.shot_time(hunters)
   shot_time=Hash.new
   #retrieving specific timestamps for each hunter
