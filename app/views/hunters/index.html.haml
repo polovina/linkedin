@@ -14,5 +14,6 @@
             %input{:type => 'text', :id=>'name', :name=>'name'}
             %div
             = submit_tag 'Check connection'
+        %td= link_to "Add e-mail", edit_hunter_path(hunter)
         %td= button_to 'remove', hunter_path(hunter), :method => :delete, :confirm => 'Are you sure?'
     %div= link_to image_tag("add_hunter.png"), "/auth"      

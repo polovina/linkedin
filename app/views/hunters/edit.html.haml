@@ -1,0 +1,16 @@
+-# edit.html.haml using partial
+
+%h1= link_to 'Back to hunting', hunters_path
+
+= form_tag hunter_path(@boar), :method => :put do
+
+  = label :hunter, :title, 'Title'
+  = text_field :hunter, 'name'
+
+  = label :hunter, :email, 'e-mail'
+  = text_field :hunter, :email
+  
+ 
+
+  %div
+  = submit_tag 'Update Hunter'

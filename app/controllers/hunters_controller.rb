@@ -6,7 +6,17 @@ class HuntersController < ApplicationController
      @hunters=Hunter.all
      @result = params[:result]
  end
+ 
+ def edit
+    @hunter = Hunter.find params[:id]
+  end
 
+  def update
+    @hunter = Hunter.find params[:id]
+    @hunter.update_attributes!(params[:hunter])
+    flash[:notice] = "#{@hunter.name} was successfully updated."
+    redirect_to hunters_path
+  end
 def check
     token = params[:token]
     name = (params[:fname]+params[:lname]).downcase
