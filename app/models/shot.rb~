@@ -5,49 +5,49 @@ class Shot < ActiveRecord::Base
    (Shot.where(:source=>source).count/records_in_page).times {|i| pages.push(i+1)}
    return pages.drop(1)
  end
+
 #creating array of all source filters
  def self.sources
-   all_sources=Array.new
+   all_sources=Array.new()
    Shot.select(:source).group(:source).each {|source| all_sources.push(source.source)}
    return all_sources
  end
 
 #task for streaming LinkedIn activity
 def self.stream
-  hunters=Hunter.where(:active=>true)
-  clients=Hunter.clients(hunters)
-  shot_time=Hunter.shot_time(hunters)
+  #hunters=Hunter.where(:active=>true)
+  clients=Hunter.clients(Hunter.where(:active=>true))
+  shot_time=Hunter.shot_time(Hunter.where(:active=>true))
   boars=Boar.where(:active=>true)
-  hunters=Hunter.where(:active=>true)
   
   #looping all clients
   clients.each {|id, client|
   hunter= client.profile.first_name + " " +client.profile.last_name
   client.network_updates(:type => 'CONN',:after => shot_time[id]).updates.each {|update|
-    connection_first=update.profile.first_name + " " +update.profile.last_name
+  connection_first=update.profile.first_name + " " +update.profile.last_name
       
       if (update.profile.connections)
          update.profile.connections.each {|connection|
-         if (connection.headline)
-           headline= connection.headline
-           connection_second=connection.first_name + " " + connection.last_name
-           comments="test"
-           boars.each{|boar| 
-           #check if boar is shot. Company aliases are in the aliases field
-           search_string = (boar.title + " "+ (boar.aliases ? boar.aliases : "")).strip
-           if (headline.downcase.gsub(/,.-=_'"/,"").scan(/\w+/) & search_string.downcase.scan(/\w+/)).empty?
-          else
-               #Addind shot table
-               Shot.create!(:connection_first=>connection_first, :connection_second=> connection_second, :comments=>comments, :headline=>headline, :hunter=>hunter, :source=>"stream", :important=>false, :boar=>boar.title, :boar_id=>boar.id, :hunter_id=>id)
+           if /^(.+) at (.+)$/ =~connection.headline
+             headline_company= /at (.+)$/.match(connection.headline)[1]
+             headline_position= /^(.+) at/.match(connection.headline)[1]
+             connection_second=connection.first_name + " " + connection.last_name
+             comments=""
+             boars.each{|boar| 
+               #check if boar is shot. Company aliases are in the aliases field
+               if Boar.wound?(boar, headline_company)
+               Shot.create!(:connection_first=>connection_first, :connection_second=> connection_second, :comments=>comments, :headline=>headline_position, :hunter=>hunter, :source=>"stream", :important=>false, :boar=>headline_company, :boar_id=>boar.id, :hunter_id=>id)
+               mail_body=connection_first + " just connected to " + connection_second + ", who is " + headline_position + " at targeting company " + headline_company
+               UserMailer.shot_boar(Hunter.where(:id=>id).first, mail_body).deliver
+               end
+              }
            end
-           }
-         end
          }   
       end
     } 
   }
  end
-
+facet=network,F
 def self.search
   hunters=Hunter.where(:active=>true)
   clients=Hunter.clients(hunters)
@@ -58,7 +58,7 @@ def self.search
         search_string = (boar.title + " "+ (boar.aliases ? boar.aliases : "")).strip
         total_profiles = client.search(:company=>boar.title, :current_company=>true, :network=>"in").total
         #to prevent Linkedin bouncing
-        total_profiles = 20 unless total_profiles<100
+        total_profiles = 100 unless total_profiles<100
            (total_profiles/20).times{|i| 
            #looping all boars
            client.search(:company=>boar.title, :network=>"in", :start=>(20*i), :count=>20).profiles.each{|profile|

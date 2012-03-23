@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
-gem 'linkedin'
-
+#gem 'linkedin'
+gem 'linkedin', :git => 'http://github.com/pengwynn/linkedin.git', :branch => '2-0-stable'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
@@ -34,5 +34,7 @@ gem 'jquery-rails'
 
 # To use debugger
 gem 'haml'
-gem "spawn", :git => 'git://github.com/tra/spawn', :branch => "edge"
+#gem "spawn", :git => 'git://github.com/tra/spawn', :branch => "edge"
 gem "rufus-scheduler", :git=>'git://github.com/jmettraux/rufus-scheduler.git'
+#gem "mail"
+

@@ -1,6 +1,7 @@
 class BoarsController < ApplicationController
-
+  
   def show
+    @hunters=Hunter.all
     id = params[:id] # retrieve company ID from URI route
     @boar = Boar.find(id) # look up company by unique ID
   # will render app/views/movies/show.<extension> by default
@@ -8,7 +9,6 @@ class BoarsController < ApplicationController
 
  def index
   @boars=Boar.all
-  @hunters=Hunter.all
   end
 
 
@@ -30,7 +30,7 @@ class BoarsController < ApplicationController
     @boar = Boar.find params[:id]
     @boar.update_attributes!(params[:boar])
     flash[:notice] = "#{@boar.title} was successfully updated."
-    redirect_to boar_path(@boar)
+    redirect_to boars_path
   end
 
   def destroy

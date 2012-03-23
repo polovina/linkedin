@@ -31,7 +31,7 @@ h1 {
 }
 h1.title {
   margin: 0 0 1em;
-  padding-left: -80px;
+  padding-left: 0px;
   padding-right: 0px;
   text-align: right;
   border-bottom: 0px solid gold;
@@ -68,7 +68,7 @@ background: rosybrown;
 td.inactive {
 background: rosybrown;
 }
-#shots tr.hilite, span.hilite
+#shots tr.hilite, span.hilite, td.important
 {
 background: yellow;
 }

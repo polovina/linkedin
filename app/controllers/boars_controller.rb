@@ -1,14 +1,15 @@
 class BoarsController < ApplicationController
-
+  
   def show
+    @hunters=Hunter.all
     id = params[:id] # retrieve company ID from URI route
     @boar = Boar.find(id) # look up company by unique ID
   # will render app/views/movies/show.<extension> by default
   end
 
  def index
+  @source="boar"
   @boars=Boar.all
-  @hunters=Hunter.all
   end
 
 

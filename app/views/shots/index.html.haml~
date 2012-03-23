@@ -7,7 +7,7 @@
           %td=button_to "Check stream activity", "/shots/task_stream?sort=stream", :class=>"task"
           %td=button_to "Launch total search", "/shots/task_search?sort=search", :class=>"task"
           %td Last activity was recorded at
-            =@last_activity
+          %td=@last_activity
       
       
       %p

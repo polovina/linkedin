@@ -6,11 +6,13 @@ GIT
       tzinfo (>= 0.3.23)
 
 GIT
-  remote: git://github.com/tra/spawn
-  revision: 0e1ab99b8c90ec16f6163641d9e84005fea01263
-  branch: edge
+  remote: http://github.com/pengwynn/linkedin.git
+  revision: 78d68b0c11515170316c8d9894dab524424ff053
+  branch: 2-0-stable
   specs:
-    spawn (1.1)
+    linkedin (0.2.2)
+      nokogiri (~> 1.5.0)
+      oauth (~> 0.4.0)
 
 GEM
   remote: http://rubygems.org/
@@ -69,16 +71,13 @@ GEM
     libv8 (3.3.10.4)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
-    linkedin (0.2.2)
-      nokogiri (~> 1.4.4)
-      oauth (~> 0.4.0)
     mail (2.3.2)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     multi_json (1.1.0)
-    nokogiri (1.4.7)
+    nokogiri (1.5.2)
     oauth (0.4.5)
     pg (0.13.1)
     polyglot (0.3.3)
@@ -149,13 +148,12 @@ DEPENDENCIES
   coffee-rails (~> 3.1.0)
   haml
   jquery-rails
-  linkedin
+  linkedin!
   pg
   rails (= 3.1.0)
   ruby-debug19
   rufus-scheduler!
   sass-rails (~> 3.1.0)
-  spawn!
   sqlite3
   therubyracer
   uglifier

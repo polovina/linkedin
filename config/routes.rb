@@ -1,4 +1,6 @@
 Linkedin::Application.routes.draw do
+  resources :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -17,9 +19,14 @@ Linkedin::Application.routes.draw do
   resources :hunters
   resources :tasks
   resources :streams
+  match "/auth" => "auth#index"
+  match "/auth/callback" => "auth#callback"
+  match "/auth/outlook" => "auth#outlook"
+  match "/auth/check" => "auth#check"
   match "/hunters/:id/toggle" => "hunters#toggle"
+  match "/hunters/check" => "hunters#check"
   match "/hunters/new" => "hunters#new"
-  match "/hunters/show" => "hunters#show"
+  match "/hunters" => "hunters#index"
   match "/boars/:id/toggle" => "boars#toggle"
   match "/boars/:id/edit" => "boars#edit"
   match "/boars" => "boars#index"

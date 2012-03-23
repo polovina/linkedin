@@ -13,12 +13,6 @@
       %p
       %table#shots
         %thead
-          %div
-            %ul{:id=>"mainNav"}
-              %li= link_to "All activity", shots_path(:page=>"1"), :method=>:get, :class=>(@source.class==Array ? "filter" : "regular")
-              %li= link_to "Hunters stream", shots_path(:source=>"stream", :page=>"1"), :method=>:get, :class=>(@source=="stream" ? "filter" : "regular")
-              %li= link_to "Boars search", shots_path(:source=>"search", :page=>"1"), :method=>:get, :class=>(@source=="search" ? "filter" : "regular")
-          %tr
           %tr
             %th{:class=> ("hilite" if @sort=="boar")}= link_to "Company", shots_path(:sort=>"boar", :page=>"1")
             %th{:class=> ("hilite" if @sort=="hunter")}= link_to "Connection", shots_path(:sort=>"hunter", :page=>"1")

@@ -1,0 +1,30 @@
+-#  This file is app/views/hunters/index.html.haml
+%div#hunters
+  %table#hunters
+    %tbody
+    - @hunters.each do |hunter|
+      %tr
+        %td= hunter.name
+        %td= link_to (hunter.active ? image_tag(hunter.image_url) : image_tag("inactive_hunter.png")), hunter_path(hunter)+"/toggle", :method => :update 
+        %td= button_to 'remove', hunter_path(hunter), :method => :delete, :confirm => 'Are you sure?'
+    %div= link_to image_tag("add_hunter.png"), "/hunters/new"
+    
+    
+    
+    = form_tag "/hunters/check" do
+  
+      = label :hunter, 'Enter email'
+      %input{:type => 'text', :id=>'email', :name=>'email'}
+      %div
+      = label :hunter, 'Enter first name'
+      %input{:type => 'text', :id=>'fname', :name=>'fname'}
+  
+      = label :hunter, 'Enter last name'
+      %input{:type => 'text', :id=>'lname', :name=>'lname'}
+      %div
+      
+      %div
+      = submit_tag 'Check connection'
+      %div= @result
+        
+      

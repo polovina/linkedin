@@ -34,5 +34,7 @@ gem 'jquery-rails'
 
 # To use debugger
 gem 'haml'
-gem "spawn", :git => 'git://github.com/tra/spawn', :branch => "edge"
-gem "rufus-scheduler" :git=>'git://github.com/jmettraux/rufus-scheduler.git'
+#gem "spawn", :git => 'git://github.com/tra/spawn', :branch => "edge"
+gem "rufus-scheduler", :git=>'git://github.com/jmettraux/rufus-scheduler.git'
+gem "mail"
+

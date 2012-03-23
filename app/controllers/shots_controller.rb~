@@ -5,6 +5,7 @@ class ShotsController < ApplicationController
   end
 
  def index
+   @hunters=Hunter.all
    @page= params[:page] ? params[:page].to_i : 1
    @rows_on_page= params[:rows_on_page] ? params[:rows_on_page].to_i : 20
    @sort= params[:sort] ? params[:sort]: "created_at"
@@ -28,6 +29,11 @@ class ShotsController < ApplicationController
 
    def task_stream
     Shot.stream
+    redirect_to shots_path
+   end
+   
+   def task_search
+    Shot.search
     redirect_to shots_path
    end
 

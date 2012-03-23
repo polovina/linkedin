@@ -1,0 +1,11 @@
+class Boar < ActiveRecord::Base
+
+def self.wound?(boar, shot)
+#check if boar is shot. Company aliases are in the aliases field
+   #search_string = (boar.title + " "+ (boar.aliases ? boar.aliases : "")).strip
+   search_string = boar
+   return search_string.include? shot
+               
+ end
+
+end

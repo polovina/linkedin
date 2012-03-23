@@ -5,6 +5,7 @@ class ShotsController < ApplicationController
   end
 
  def index
+  
    @page= params[:page] ? params[:page].to_i : 1
    @rows_on_page= params[:rows_on_page] ? params[:rows_on_page].to_i : 20
    @sort= params[:sort] ? params[:sort]: "created_at"
@@ -12,7 +13,9 @@ class ShotsController < ApplicationController
    @pages=Shot.pages(@rows_on_page, @source)
    @last_activity=Shot.maximum(:created_at)
    #displaying one page at a time
-   @shots=Shot.where(:source=>@source).order(@sort+ " DESC").limit(@rows_on_page).offset((@page-1)*@rows_on_page)
+   @shots = @source ? Shot.where(:source=>@source).order(@sort+ " DESC").limit(@rows_on_page).offset((@page-1)*@rows_on_page) : Shot.all
+   
+   #@shots=Shot.where(:source=>@source).order(@sort+ " DESC").limit(@rows_on_page).offset((@page-1)*@rows_on_page)
  end
 
   def edit

@@ -68,7 +68,7 @@ background: rosybrown;
 td.inactive {
 background: rosybrown;
 }
-#shots tr.hilite, span.hilite
+#shots tr.hilite, span.hilite, tr.important
 {
 background: yellow;
 }

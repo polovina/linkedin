@@ -7,8 +7,9 @@ class CreateHunters < ActiveRecord::Migration
       t.string :secret
       t.string :linked_id
       t.string :image_url
+      t.string :email
+      t.string :password
       t.boolean :active
-    
       # Add fields that let Rails automatically keep track
       # of when users are added or modified:
       t.timestamps

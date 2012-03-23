@@ -12,5 +12,12 @@
         #notice.message= flash[:notice]
       - elsif flash[:warning]
         #warning.message= flash[:warning]
+    %h1#title Hunting
+    %ul{:id=>"mainNav"}
+      %li= link_to "Hunters page", hunters_path, :method=>:get, :class=>(@source=="hunter" ? "filter" : "regular")
+      %li= link_to "Boars page", boars_path, :method=>:get, :class=>(@source=="boar" ? "filter" : "regular")
+      %li= link_to "Shots page", shots_path(:page=>"1"), :method=>:get, :class=>(@source.class==Array ? "filter" : "regular")
+      %li= link_to "Hunters stream", shots_path(:source=>"stream", :page=>"1"), :method=>:get, :class=>(@source=="stream" ? "filter" : "regular")
+      %li= link_to "Boars search", shots_path(:source=>"search", :page=>"1"), :method=>:get, :class=>(@source=="search" ? "filter" : "regular")
 
       = yield

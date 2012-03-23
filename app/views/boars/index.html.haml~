@@ -25,6 +25,6 @@
           %tr
             - @hunters.each do |hunter|
               %td
-                =hunter.name
+                %div= hunter.name
                 =link_to (hunter.active ? image_tag(hunter.image_url) : image_tag("inactive_hunter.png")), hunter_path(hunter)+"/toggle", :method => :update 
                 =button_to 'remove', hunter_path(hunter), :method => :delete, :confirm => 'Are you sure?'

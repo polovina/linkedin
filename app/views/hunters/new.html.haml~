@@ -1,13 +1,21 @@
 %h1 New Hunter
 
 %div
-= form_tag "/hunters/show", :method=> get do
+%p To register new hunter first you need to get PIN from linkedIn, then enter PIN, email for getting notifications and password
+
+= form_tag "/hunters/show" do
   = hidden_field_tag 'rtoken', @rtoken
   = hidden_field_tag 'rsecret', @rsecret
   = label :hunter, 'Enter pin'
   %input{:type => 'text', :id=>'pin', :name=>'pin'}
   %div
+  = label :hunter, 'Enter email'
+  %input{:type => 'text', :id=>'email', :name=>'email'}
   
+  = label :hunter, 'Enter password'
+  %input{:type => 'text', :id=>'password', :name=>'password'}
+  %div
+  %p
   = link_to "Click here or copy/paste url, get the PIN, return and enter it", @url, :target => "_blank"
   %div
   = label :hunter, 'url'
