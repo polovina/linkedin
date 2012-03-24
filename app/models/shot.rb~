@@ -15,62 +15,54 @@ class Shot < ActiveRecord::Base
 
 #task for streaming LinkedIn activity
 def self.stream
-  #hunters=Hunter.where(:active=>true)
+  
   clients=Hunter.clients(Hunter.where(:active=>true))
   shot_time=Hunter.shot_time(Hunter.where(:active=>true))
   boars=Boar.where(:active=>true)
   
   #looping all clients
   clients.each {|id, client|
-  hunter= client.profile.first_name + " " +client.profile.last_name
+  mail_body=""
+  hunter= client.profile.first_name + " " + client.profile.last_name
   client.network_updates(:type => 'CONN',:after => shot_time[id]).updates.each {|update|
   connection_first=update.profile.first_name + " " +update.profile.last_name
-      
+  connection_first_url=update.profile.public_profile_url    
       if (update.profile.connections)
          update.profile.connections.each {|connection|
            if /^(.+) at (.+)$/ =~connection.headline
              headline_company= /at (.+)$/.match(connection.headline)[1]
              headline_position= /^(.+) at/.match(connection.headline)[1]
              connection_second=connection.first_name + " " + connection.last_name
+             connection_second_url=connection.public_profile_url
              comments=""
              boars.each{|boar| 
                #check if boar is shot. Company aliases are in the aliases field
                if Boar.wound?(boar, headline_company)
-               Shot.create!(:connection_first=>connection_first, :connection_second=> connection_second, :comments=>comments, :headline=>headline_position, :hunter=>hunter, :source=>"stream", :important=>false, :boar=>headline_company, :boar_id=>boar.id, :hunter_id=>id)
-               mail_body=connection_first + " just connected to " + connection_second + ", who is " + headline_position + " at targeting company " + headline_company
-               UserMailer.shot_boar(Hunter.where(:id=>id).first, mail_body).deliver
+               Shot.create!(:connection_second_url=>connection_second_url, :connection_first_url=>connection_first_url, :connection_first=>connection_first, :connection_second=> connection_second, :comments=>comments, :headline=>headline_position, :hunter=>hunter, :source=>"stream", :important=>false, :boar=>headline_company, :boar_id=>boar.id, :hunter_id=>id)
+               mail_body=mail_body+connection_first + " just connected to " + connection_second + ", who is " + headline_position + " at targeting company " + headline_company + "\n"
                end
               }
            end
          }   
       end
     } 
+  UserMailer.shot_boar(Hunter.where(:id=>id).first, mail_body).deliver unless mail_body.length>20
   }
  end
-facet=network,F
+
 def self.search
   hunters=Hunter.where(:active=>true)
-  clients=Hunter.clients(hunters)
   boars=Boar.where(:active=>true)
-  clients.each {|id, client|
-      hunter= client.profile.first_name + " " +client.profile.last_name
+  hunters.each {|hunter|
       boars.each {|boar|
-        search_string = (boar.title + " "+ (boar.aliases ? boar.aliases : "")).strip
-        total_profiles = client.search(:company=>boar.title, :current_company=>true, :network=>"in").total
-        #to prevent Linkedin bouncing
-        total_profiles = 100 unless total_profiles<100
-           (total_profiles/20).times{|i| 
-           #looping all boars
-           client.search(:company=>boar.title, :network=>"in", :start=>(20*i), :count=>20).profiles.each{|profile|
-           headline= profile.headline
-           connection_second= profile.first_name + " " + profile.last_name
-           if (headline.downcase.gsub(/,.-=_'"/,"").scan(/\w+/) & search_string.downcase.scan(/\w+/)).empty?
-           else
-           Shot.create!(:connection_first=>"undefined", :connection_second=>connection_second, :headline=> headline, :hunter=>hunter, :source=>"search", :important=>false, :boar=>boar.title, :boar_id=>boar.id, :hunter_id=>id)  unless (Shot.where(:connection_second=> connection_second, :headline=> headline, :hunter=>hunter, :boar=>boar.title).count)>0
-            end
-            }         
-         }
-       }
-      }
+        
+        aged_hunt = false
+        aged_hunt = boar.searched_by.include? (hunter.id.to_s) unless boar.searched_by.nil?
+        if not aged_hunt
+           Boar.hunt(hunter, boar)
+        end
+        
+                 }
+        }       
  end
 end

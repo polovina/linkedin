@@ -20,6 +20,10 @@
   = label :boar, :comment, 'Comment'
   = text_field :boar, :comment
   
-  
+  = label :boar, :hunter_id, 'Hunter'
+  -names= @hunter_names.values
+  -id= @hunter_names.keys
+  = select :boar, :hunter_id, id
+ 
   %div
   = submit_tag 'Let the hunting begin!'

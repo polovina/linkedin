@@ -15,9 +15,13 @@ class BoarsController < ApplicationController
 
   def new
     # default: render 'new' template
+   @hunter_names = Hash.new
+   Hunter.all.each{|hunter| @hunter_names[hunter.id] = hunter.name}
+   
   end
 
   def create
+    #raise params[:boar].inspect
     @boar = Boar.create!(params[:boar])
     flash[:notice] = "#{@boar.title} was added"
     redirect_to boars_path

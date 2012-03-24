@@ -32,14 +32,12 @@ def self.test
        
        hunter = Hunter.where(:email=>"alex.polovinko@gmail.com").first
 # Set up LinkedIn specific OAuth API endpoints
-       consumer_options = {:site => "https://api.linkedin.com",
-                     :authorize_path => "/uas/oauth/authorize",
-                     :request_token_path => "/uas/oauth/requestToken",
-                     :access_token_path => "/uas/oauth/accessToken" }
-       
-       consumer = OAuth::Consumer.new(Apikey.token, Apikey.secret, consumer_options)
+       consumer = OAuth::Consumer.new(Apikey.token, Apikey.secret, Apikey.options)
        access_token = OAuth::AccessToken.new(consumer, hunter.token, hunter.secret)
- 
+       
+     
+       #JSON.parse(client.get("http://api.linkedin.com/v1/people-search:(people:(distance,public-profile-url,id,first-name,last-name,headline,three-current-positions:(company:(name))))?facet=network,F&start=0&count=25&current-company=TRUE&company-name=Altoros", 'x-li-format' => 'json').body)
+       #get("http://api.linkedin.com/v1/people-search?facet=network,F&company-name=Altoros").body
 # Pick some fields
        #fields = ['first-name', 'last-name', 'headline', 'industry', 'num-connections'].join(',')
 

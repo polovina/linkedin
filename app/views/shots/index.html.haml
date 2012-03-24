@@ -15,17 +15,23 @@
         %thead
           %tr
             %th{:class=> ("hilite" if @sort=="boar")}= link_to "Company", shots_path(:sort=>"boar", :page=>"1")
-            %th{:class=> ("hilite" if @sort=="hunter")}= link_to "Connection", shots_path(:sort=>"hunter", :page=>"1")
-            %th Shoot to
-            %th Created
+            %th{:class=> ("hilite" if @sort=="hunter")}= link_to "Hunter", shots_path(:sort=>"hunter", :page=>"1")
+            %th{:class=> ("hilite" if @sort=="connection_first")}= link_to "First", shots_path(:sort=>"connection_first", :page=>"1")
+            %th{:class=> ("hilite" if @sort=="connection_second")}= link_to "Second", shots_path(:sort=>"connection_second", :page=>"1")
+            %th{:class=> ("hilite" if @sort=="headline")}= link_to "Shoot to", shots_path(:sort=>"headline", :page=>"1")
+            %th{:class=> ("hilite" if @sort=="created_at")}= link_to "Date", shots_path(:sort=>"created_at", :page=>"1")
         %tbody
           - @shots.each do |shot|
             %tr{:class=> (shot.important ? "important" : "regular")}
-              %td{:class=>"boar"}= link_to shot.boar, "/boars/" + shot.boar_id
-              %td{:class=>"hunter"}= link_to shot.hunter + "=>" + shot.connection_first + "=>"+shot.connection_second, edit_shot_path(shot)
-              %td{:class=>"shot"}= link_to shot.headline, edit_shot_path(shot)
+              %td= link_to shot.boar, "/boars/" + shot.boar_id
+              %td= link_to shot.hunter, "/hunters/" + shot.hunter_id
+              %td= link_to shot.connection_first, shot.connection_first_url
+              %td= link_to shot.connection_second, shot.connection_second_url
+              %td= link_to shot.headline, edit_shot_path(shot)
               -shot_date=shot.created_at.to_s.gsub(" UTC","")
               %td= link_to shot_date, edit_shot_path(shot)
+              
+              
           %tr
             %table#pages
               %tr

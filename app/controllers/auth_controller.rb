@@ -3,7 +3,7 @@ class AuthController < ApplicationController
   def index
     # get your api keys at https://www.linkedin.com/secure/developer
     client = LinkedIn::Client.new(Apikey.first.token, Apikey.first.secret)  
-    request_host_with_port = "hollow-sword-1707.herokuapp.com:8080"
+    request_host_with_port = Apikey.host
     request_token = client.request_token(:oauth_callback =>"http://#{request_host_with_port}/auth/callback")
     session[:rtoken] = request_token.token
     session[:rsecret] = request_token.secret

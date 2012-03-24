@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319201245) do
+ActiveRecord::Schema.define(:version => 20120321205719) do
 
   create_table "apikeys", :force => true do |t|
     t.string "token"
@@ -27,26 +27,22 @@ ActiveRecord::Schema.define(:version => 20120319201245) do
     t.string   "comment"
     t.string   "source"
     t.string   "aliases"
+    t.string   "hunter_id"
+    t.string   "searched_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "hunters", :force => true do |t|
-    t.string   "name"
-    t.string   "token"
-    t.string   "secret"
-    t.string   "linked_id"
-    t.string   "image_url"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# Could not dump table "hunters" because of following StandardError
+#   Unknown type '' for column 'email'
 
   create_table "shots", :force => true do |t|
     t.string   "boar"
     t.string   "hunter"
     t.string   "connection_first"
+    t.string   "connection_first_url"
     t.string   "connection_second"
+    t.string   "connection_second_url"
     t.string   "headline"
     t.string   "source"
     t.string   "comments"

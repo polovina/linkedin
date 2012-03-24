@@ -11,8 +11,17 @@
   = select :shot, :important, [true, false]
 
 
-  = label :shot, :connection_second, 'Connection'
+  = label :shot, :connection_second, 'Connection second'
   = text_field :shot, :connection_second
+  
+  = label :shot, :connection_second_url, 'Connection second'
+  = text_field :shot, :connection_second_url
+  
+  = label :shot, :connection_first, 'Connection first'
+  = text_field :shot, :connection_first
+  
+  = label :shot, :connection_second_url, 'Connection second'
+  = text_field :shot, :connection_first_url
   
   = label :shot, :headline, 'Shot'
   = text_field :shot, :headline
@@ -20,5 +29,5 @@
   = label :shot, :comments, 'Notes'
   = text_field :shot, :comments
   
-
+  %div
   = submit_tag 'Update shot Info'
