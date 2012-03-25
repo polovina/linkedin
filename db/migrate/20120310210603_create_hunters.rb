@@ -1,6 +1,6 @@
 class CreateHunters < ActiveRecord::Migration
   def up
-    create_table :hunters do |t|
+    create_table :hunters, :force => true do |t|
       t.string :id
       t.string :name
       t.string :token

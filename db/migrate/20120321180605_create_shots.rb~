@@ -1,6 +1,6 @@
 class CreateShots < ActiveRecord::Migration
   def up
-    create_table :shots, :force => true do |t|
+    create_table :shots do |t|
       t.string :id
       t.string :boar
       t.string :hunter
