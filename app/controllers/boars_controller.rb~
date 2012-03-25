@@ -1,4 +1,5 @@
 class BoarsController < ApplicationController
+  require 'csv'
   
   def show
     id = params[:id] # retrieve company ID from URI route

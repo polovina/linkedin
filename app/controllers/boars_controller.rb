@@ -73,7 +73,6 @@ class BoarsController < ApplicationController
                       :cto => row[11],
                       :founder => row[12],
                       :overview => row[13],
-                     # :hunter_id => params[:hunter_id]
                       :hunter_id => params[:hunter]
                       )
     end
