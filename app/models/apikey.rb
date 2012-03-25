@@ -1,10 +1,15 @@
 class Apikey < ActiveRecord::Base
 
   def self.token
-  Apikey.select(:token).first.token
+  #Apikey.select(:token).first.token
+  token="crbvkpxjvxb3"
+  return token
   end
+  
   def self.secret
-  Apikey.select(:secret).first.secret
+  #Apikey.select(:secret).first.secret
+  secret="oP9l0V9qrwMdRD2X"
+  return secret
   end
 
    def self.options

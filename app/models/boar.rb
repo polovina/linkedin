@@ -48,4 +48,15 @@ def self.hunt(hunter, boar)
   end
  end
 
+#uploading boars csv file feature
+ def self.upload(upload)
+    name =  upload['datafile'].original_filename
+    directory = "public/data"
+    # create the file path
+    path = File.join(directory, name)
+    # write the file
+    File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
+  end
+
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321205719) do
+ActiveRecord::Schema.define(:version => 20120322205719) do
 
   create_table "apikeys", :force => true do |t|
     t.string "token"
@@ -19,16 +19,28 @@ ActiveRecord::Schema.define(:version => 20120321205719) do
   end
 
   create_table "boars", :force => true do |t|
-    t.string   "title"
-    t.string   "rating"
-    t.string   "status"
-    t.boolean  "active"
-    t.text     "description"
-    t.string   "comment"
-    t.string   "source"
-    t.string   "aliases"
-    t.string   "hunter_id"
-    t.string   "searched_by"
+    t.string   "title",          :default => "",       :null => false
+    t.string   "rating",         :default => "0"
+    t.string   "status",         :default => "novice"
+    t.boolean  "active",         :default => true
+    t.string   "comment",        :default => ""
+    t.string   "source",         :default => ""
+    t.string   "aliases",        :default => ""
+    t.string   "hunter_id",                            :null => false
+    t.string   "searched_by",    :default => ""
+    t.string   "category",       :default => ""
+    t.string   "crunchbase_url", :default => ""
+    t.string   "seed_date",      :default => ""
+    t.string   "A_date",         :default => ""
+    t.string   "B_date",         :default => ""
+    t.string   "C_date",         :default => ""
+    t.string   "un_date",        :default => ""
+    t.string   "employees",      :default => "0"
+    t.string   "fund",           :default => ""
+    t.string   "ceo",            :default => ""
+    t.string   "cto",            :default => ""
+    t.string   "founder",        :default => ""
+    t.text     "overview",       :default => ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end

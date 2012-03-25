@@ -73,7 +73,7 @@ background: rosybrown;
 background: yellow;
 }
 
-#shots th 
+#shots th, #boars th
 {
 font-size:1.1em;
 text-align:left;
@@ -87,7 +87,10 @@ a.filter
 background-color:wheat;
 }
 
-
+#boars td.overview
+{
+width:30%
+}
 #shots td.boar
 {
 width:8%
@@ -144,7 +147,7 @@ font-size:18pt;
 min-width:200px;
 }
 
-table#shots
+table#shots, table#boars
 {
 background-color:wheat;
 }

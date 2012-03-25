@@ -1,0 +1,7 @@
+= form_tag boar_path({:action => 'uploadFile'}, :multipart => true) do
+
+  = label :upload_file, :upload_file, 'Select File'
+  = text_field :upload, 'datafile'
+
+  %div
+  = submit_tag 'Upload'

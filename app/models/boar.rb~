@@ -25,7 +25,7 @@ def self.hunt(hunter, boar)
                 Shot.create!(:connection_first=>connection_first, :connection_first_url=>connection_first_url, :connection_second=>"", :headline=> headline, :hunter=>hunter.name, :source=>"search", :important=>false, :boar=>boar.title, :boar_id=>boar.id, :hunter_id=>hunter.id)
                 mail_body=mail_body+ connection_first + "(" + connection_first_url + ") is working at targeting company " + boar.title + "\n"
                 }
-      mail_body="In hunter " + hunter.name + " first level network " + mail_body
+      mail_body="In hunter " + hunter.name + " first level network\n" + mail_body
       end
    
    
@@ -38,7 +38,7 @@ def self.hunt(hunter, boar)
                 Shot.create!(:connection_second=>connection_second, :connection_second_url=>connection_second_url, :connection_first=>"", :headline=> headline, :hunter=>hunter.name, :source=>"search", :important=>false, :boar=>boar.title, :boar_id=>boar.id, :hunter_id=>hunter.id)
                  mail_body=mail_body + connection_second + "(" + connection_second_url + ") is working at targeting company " + boar.title + "\n"
                       }
-      mail_body="In hunter " + hunter.name + " LinkedIn second level network " + mail_body
+      mail_body="In hunter " + hunter.name + " LinkedIn second level network\n" + mail_body
       end
   
    
@@ -47,5 +47,18 @@ def self.hunt(hunter, boar)
    UserMailer.shot_boar(Hunter.where(:id=>boar.hunter_id).first, mail_body).deliver unless mail_body.length < 10
   end
  end
+
+#uploading boars csv file feature
+ def self.upload(upload)
+    name =  upload['datafile'].original_filename
+    directory = "public/data"
+    # create the file path
+    path = File.join(directory, name)
+    # write the file
+    File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
+  end
+ 
+ end
+
 
 end

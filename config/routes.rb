@@ -30,8 +30,12 @@ Linkedin::Application.routes.draw do
   match "/boars/:id/toggle" => "boars#toggle"
   match "/boars/:id/edit" => "boars#edit"
   match "/boars" => "boars#index"
+  match "/boars/csv_import" => "boars#csv_import"
+  match "/upload/index" => "upload#index"
+  match "/upload/" => "upload#uploadFile"
   match "/shots/task_stream" =>"shots#task_stream"
   match "/shots/task_search" =>"shots#task_search"
+  
   # Sample resource route with options:
   #   resources :products do
   #     member do

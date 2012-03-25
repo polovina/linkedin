@@ -68,12 +68,12 @@ background: rosybrown;
 td.inactive {
 background: rosybrown;
 }
-#shots tr.hilite, span.hilite, td.important
+#shots tr.hilite, span.hilite, tr.important
 {
 background: yellow;
 }
 
-#shots th 
+#shots th, #boars th
 {
 font-size:1.1em;
 text-align:left;
@@ -144,7 +144,7 @@ font-size:18pt;
 min-width:200px;
 }
 
-table#shots
+table#shots, table#boars
 {
 background-color:wheat;
 }

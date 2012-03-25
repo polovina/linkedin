@@ -1,0 +1,15 @@
+= form_tag({:action=> "uploadFile"}, :multipart => true) do
+
+= form_tag '/boars/csv_import', :multipart => true do
+
+  = label :upload_file, :upload_file, 'Select File'
+  = file_field :upload, 'datafile'
+
+  %div
+  = submit_tag 'Upload'
+  
+  
+  <%=form_tag '/script_admin/csv_import', :multipart => true do%>
+<%= file_field_tag "file" %><br/>
+<%= submit_tag("Import") %>
+<% end %>

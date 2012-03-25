@@ -22,6 +22,7 @@ Linkedin::Application.routes.draw do
   match "/auth" => "auth#index"
   match "/auth/callback" => "auth#callback"
   match "/auth/outlook" => "auth#outlook"
+  match "/auth/check" => "auth#check"
   match "/hunters/:id/toggle" => "hunters#toggle"
   match "/hunters/check" => "hunters#check"
   match "/hunters/new" => "hunters#new"
@@ -29,8 +30,11 @@ Linkedin::Application.routes.draw do
   match "/boars/:id/toggle" => "boars#toggle"
   match "/boars/:id/edit" => "boars#edit"
   match "/boars" => "boars#index"
+  match "/upload/index" => "upload#index"
+   match "/upload/" => "upload#uploadFile"
   match "/shots/task_stream" =>"shots#task_stream"
   match "/shots/task_search" =>"shots#task_search"
+  
   # Sample resource route with options:
   #   resources :products do
   #     member do

@@ -1,5 +1,13 @@
 %h1= link_to 'Back to hunting', boars_path
 
+= form_tag '/boars/csv_import', :multipart => true do
+  = select_tag "dropdown", options_from_collection_for_select(@hunters, "id", "name")
+  = file_field_tag 'file'
+  %div
+  = submit_tag 'Upload'
+
+
+
 = form_tag boars_path do
 
   = label :boar, :title, 'Title'
@@ -19,17 +27,6 @@
   
   = label :boar, :comment, 'Comment'
   = text_field :boar, :comment
-  
-  = label :boar, :hunter_id, 'Hunter'
-  -names= @hunter_names.values
-  -id= @hunter_names.keys
-  = select :boar, :hunter_id, names, :value=> id
-  
-  = label :boar, :hunter, 'Hunter_id'
-  -id= @hunter_names.keys
-  = select :hunter, :hunter_id, id
-  
-  
   
   %div
   = submit_tag 'Let the hunting begin!'

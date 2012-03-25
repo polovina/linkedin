@@ -2,22 +2,44 @@
 %body
   %div
     %div#boars
+      =link_to image_tag("add_boar.png"), new_boar_path
       %table#boars
         %tbody
           %tr
-            %td
-            %td
-              =link_to image_tag("add_boar.png"), new_boar_path
             
             %tr
+              %th= link_to "Boar", boars_path(:sort=>"title")
+              %th= link_to "Link", boars_path
+              %th= link_to "Seed date", boars_path(:sort=>"seed_date")
+              %th= link_to "A date", boars_path(:sort=>"A_date")
+              %th= link_to "B date", boars_path(:sort=>"B_date")
+              %th= link_to "C date", boars_path(:sort=>"C_date")
+              %th= link_to "Other date", boars_path(:sort=>"un_date")
+              %th= link_to "Employees", boars_path(:sort=>"employees")
+              %th= link_to "Funding", boars_path(:sort=>"fund")
+              %th= link_to "CEO", boars_path(:sort=>"ceo")
+              %th= link_to "CTO", boars_path(:sort=>"cto")
+              %th= link_to "Founder", boars_path(:sort=>"founder")
+              %th= link_to "Hunter", boars_path
+              %th= link_to "Status", boars_path
+              %th Overview
+              %th Remove 
           - @boars.each do |boar|
             %tr
-              %td= link_to (boar.active ? image_tag("active_boar.png") : image_tag("passive_boar.png")), boar_path(boar)+"/toggle"
               %td= link_to boar.title, edit_boar_path(boar)
-              %td= link_to boar.rating, edit_boar_path(boar)
+              %td= link_to boar.category, boar.crunchbase_url
+              %td= link_to boar.seed_date, edit_boar_path(boar)
+              %td= link_to boar.A_date, edit_boar_path(boar)
+              %td= link_to boar.B_date, edit_boar_path(boar)
+              %td= link_to boar.C_date, edit_boar_path(boar)
+              %td= link_to boar.un_date, edit_boar_path(boar)
+              %td= link_to boar.employees, edit_boar_path(boar)
+              %td= link_to boar.fund, edit_boar_path(boar)
+              %td= link_to boar.ceo, edit_boar_path(boar)
+              %td= link_to boar.cto, edit_boar_path(boar)
+              %td= link_to boar.founder, edit_boar_path(boar)
+              %td= link_to @hunters[boar.hunter_id.to_i], edit_hunter_path(boar.hunter_id)
               %td= link_to boar.status, edit_boar_path(boar)
-              %td= link_to boar.comment, edit_boar_path(boar)
-              %td= link_to boar.hunter_id, edit_boar_path(boar)
-              %td= link_to boar.searched_by, edit_boar_path(boar)
-              %td= link_to "Delete", delete_boar_path(boar)
+              %td= boar.overview
+              %td= button_to 'remove', boar_path(boar), :method => :delete, :confirm => 'Are you sure?'
               

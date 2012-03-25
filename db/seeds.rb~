@@ -15,14 +15,14 @@ InitialHunters = [
 InitialBoars = [
     {:title => 'Test', :rating => '10', :status => 'Novice', :description => "test", :active =>true, :source=> "initial seeding while development", :aliases =>"test"}]
   
-#InitialBoars.each {|boar|Boar.create!(boar)}
+InitialBoars.each {|boar|Boar.create!(boar)}
 #InitialHunters.each { |hunter|Hunter.create!(hunter)}
 
 #Apikey.create!(:token=>"pqj3j0pxa419",:secret=>"E79ZO9noc2wtJFzs")
 
-#Apikey.create!(:token=>"crbvkpxjvxb3",:secret=>"oP9l0V9qrwMdRD2X")
-Task.create!(:task=>"stream",:frequency=>"1m", :active=>true, :description=>"Parsing updates streams")
-Task.create!(:task=>"search",:frequency=>"10m", :active=>true, :description=>"Searching in network updates")
+Apikey.create!(:token=>"crbvkpxjvxb3",:secret=>"oP9l0V9qrwMdRD2X")
+#Task.create!(:task=>"stream",:frequency=>"1m", :active=>true, :description=>"Parsing updates streams")
+#Task.create!(:task=>"search",:frequency=>"10m", :active=>true, :description=>"Searching in network updates")
 
 #Shot.create!(:connection_first=>"Initial first connection", :connection_second=> "Initial second connection", :comments=>"Initial comments", :headline=>"Initial headline", :hunter=>"Test hunter", :source=>"stream", :important=>false, :boar=>"Test boar", :boar_id=>"1", :hunter_id=>"1")
 

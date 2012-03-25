@@ -1,0 +1,6 @@
+= form_tag({:action=> "uploadFile"}, :multipart => true) do
+  = label :upload_file, :upload_file, 'Select File'
+  = file_field :upload, 'datafile'
+
+  %div
+  = submit_tag 'Upload'
