@@ -1,0 +1,21 @@
+class CreateHunters < ActiveRecord::Migration
+  def up
+    create_table :hunters, :force => true do |t|
+      t.string :id
+      t.string :name
+      t.string :token
+      t.string :secret
+      t.string :linked_id
+      t.string :image_url
+      t.string :email
+      t.string :password
+      t.boolean :active
+      # Add fields that let Rails automatically keep track
+      # of when users are added or modified:
+      t.timestamps
+    end
+  end
+  def down
+    drop_table :hunters
+  end
+end
